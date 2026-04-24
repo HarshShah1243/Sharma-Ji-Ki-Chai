@@ -1,0 +1,2481 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sharma Ji Ki Chai - Brewing Conversations</title>
+    <!-- FAVICON LINK ADDED HERE -->
+    <link rel="icon" type="image/jpeg" href="images/sharma jii kii chai logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Replaced original font with new ones for the header and body -->
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Poppins:wght@400;600&display=swap"
+        rel="stylesheet">
+    <style>
+        /* --- NEW HEADER STYLES --- */
+        body {
+            font-family: 'Poppins', sans-serif;
+            /* Applied new font to the whole body */
+            background-color: #FDF8F0;
+            /* Creamy background */
+            color: #4A4A4A;
+            overflow-x: hidden;
+        }
+
+        .font-handwritten {
+            font-family: 'Caveat', cursive;
+        }
+
+        /* Header container with a soft gradient and decorative doodles */
+        .cafe-header {
+            background: linear-gradient(180deg, #F8EFEA 0%, #FDF8F0 100%);
+            padding: 1rem 2rem;
+            position: sticky;
+            /* Made header sticky */
+            top: 0;
+            z-index: 50;
+            border-bottom: 2px solid #D3C1B3;
+            /* Soft brown border */
+            overflow: visible;
+            /* Changed to visible for mobile menu dropdown */
+        }
+
+        /* Doodles positioned absolutely within the header */
+        .doodle {
+            position: absolute;
+            opacity: 0.5;
+            pointer-events: none;
+            /* Make them non-interactive */
+        }
+
+        .doodle-teapot {
+            width: 80px;
+            bottom: -20px;
+            left: 10px;
+            transform: rotate(-15deg);
+        }
+
+        .doodle-cup {
+            width: 50px;
+            top: 15px;
+            right: 15%;
+            transform: rotate(10deg);
+        }
+
+        .doodle-leaves1 {
+            width: 60px;
+            top: 20px;
+            left: 12%;
+        }
+
+        .doodle-leaves2 {
+            width: 70px;
+            bottom: -15px;
+            right: 20px;
+            transform: scaleX(-1);
+            /* Flip horizontally */
+        }
+
+        /* Main navigation container */
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Navigation links container */
+        .nav-links {
+            display: flex;
+            gap: 0.5rem;
+            flex: 1;
+        }
+
+        .nav-links.left {
+            justify-content: flex-end;
+        }
+
+        .nav-links.right {
+            justify-content: flex-start;
+        }
+
+        /* Tea-bag styled navigation links */
+        .nav-tab {
+            position: relative;
+            padding: 1rem 1.5rem 2rem 1.5rem;
+            color: #6B4F4B;
+            /* Dark brown text */
+            font-weight: 600;
+            text-decoration: none;
+            background-color: #fff;
+            border: 2px solid #D3C1B3;
+            border-radius: 8px 8px 12px 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            clip-path: polygon(0 0, 100% 0, 100% 75%, 50% 100%, 0 75%);
+            /* Tea bag shape */
+        }
+
+        .nav-tab:hover {
+            transform: translateY(-5px) rotate(-2deg);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Tea bag string and tag */
+        .nav-tab::before {
+            content: '';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 12px;
+            background-color: #A89A8E;
+        }
+
+        .nav-tab::after {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 10px;
+            height: 10px;
+            background-color: #3A5A40;
+            /* Green tag */
+            border-radius: 2px;
+        }
+
+        /* Floating tea leaves on hover */
+        .nav-tab .tea-leaf {
+            position: absolute;
+            width: 20px;
+            opacity: 0;
+            transition: all 0.5s ease-out;
+        }
+
+        .nav-tab:hover .leaf1 {
+            opacity: 0.7;
+            transform: translateY(-40px) translateX(-20px) rotate(-20deg);
+        }
+
+        .nav-tab:hover .leaf2 {
+            opacity: 0.7;
+            transform: translateY(-50px) translateX(20px) rotate(30deg);
+            transition-delay: 0.1s;
+        }
+
+        /* Centered logo container */
+        .logo-container {
+            position: relative;
+            margin: 0 2rem;
+            cursor: pointer;
+        }
+
+        /* New logo image style */
+        .logo-image {
+            width: 150px;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-container:hover .logo-image {
+            transform: scale(1.05);
+        }
+
+        /* Responsive adjustments for header */
+        @media (max-width: 1024px) {
+            .nav-tab {
+                padding: 0.8rem 1rem 1.8rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .logo-image {
+                width: 120px;
+            }
+
+            .doodle {
+                opacity: 0.3;
+            }
+        }
+
+        /* --- NEW RESPONSIVE STYLES FOR MOBILE --- */
+        @media (max-width: 768px) {
+            .cafe-header {
+                padding: 0.5rem 1rem;
+                /* Reduce padding on mobile header */
+            }
+
+            .nav-container {
+                justify-content: space-between;
+                /* This will space out hamburger, logo, and placeholder */
+                width: 100%;
+            }
+
+            .logo-image {
+                width: 100px;
+                /* Smaller logo on mobile */
+            }
+
+            .logo-container {
+                margin: 0;
+            }
+
+            .doodle {
+                display: none;
+                /* Hide all doodles on mobile */
+            }
+
+            /* General responsive improvements */
+            .hero-section h1 {
+                font-size: 2.5rem;
+                /* 40px */
+                line-height: 1.2;
+            }
+
+            .hero-section p {
+                font-size: 1.25rem;
+                /* 20px */
+            }
+
+            /* Snacks Section Collage */
+            .snacks-collage {
+                height: auto !important;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 2rem 0;
+            }
+
+            .snack-image {
+                position: static !important;
+                /* Override inline absolute positioning */
+                transform: none !important;
+                /* Override inline transform */
+                width: 80% !important;
+                max-width: 280px;
+                margin-bottom: 1rem;
+            }
+
+            /* Hide some images on mobile to prevent clutter */
+            .snack-image[alt*="another"],
+            .snack-image[alt*="Samosas"] {
+                display: none;
+            }
+
+            /* Hide all decorative leaves on mobile */
+            .decorative-leaf {
+                display: none !important;
+            }
+
+            /* Adjust cycle man position and size */
+            #cycle-man-container {
+                width: 120px;
+                right: 5px;
+                bottom: -10px;
+            }
+
+            /* Adjust footer grid for centered text on mobile */
+            footer .grid {
+                text-align: center;
+            }
+
+            footer .flex {
+                justify-content: center;
+            }
+
+            /* Make modals more mobile-friendly */
+            .modal-content {
+                width: 95%;
+                padding: 1.5rem;
+            }
+
+            /* Adjust gallery for smaller screens */
+            .scrolling-gallery-container {
+                height: 250px;
+                /* Make gallery shorter */
+            }
+
+            .gallery-item {
+                left: 5%;
+                width: 90%;
+            }
+
+            .gallery-nav {
+                width: 40px;
+                height: 40px;
+            }
+
+            .gallery-nav.prev {
+                left: 5px;
+            }
+
+            .gallery-nav.next {
+                right: 5px;
+            }
+        }
+
+
+        /* --- ORIGINAL WEBSITE STYLES (slightly adjusted) --- */
+        .bg-brand-brown {
+            background-color: #6B4F4B;
+        }
+
+        .text-brand-brown {
+            color: #6B4F4B;
+        }
+
+        .bg-brand-green {
+            background-color: #3A5A40;
+        }
+
+        .text-brand-green {
+            color: #3A5A40;
+        }
+
+        .bg-brand-beige {
+            background-color: #EAE0D5;
+        }
+
+        .text-brand-beige {
+            color: #EAE0D5;
+        }
+
+        .border-brand-brown {
+            border-color: #6B4F4B;
+        }
+
+        /* Active link indicator for new nav tabs */
+        .nav-tab.active {
+            background-color: #F8EFEA;
+            transform: translateY(-2px);
+        }
+
+        .hero-section {
+            /* --- THIS IS THE UPDATED BACKGROUND IMAGE --- */
+            background-image: url('images/homehero.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        /* --- NEW HERO FOR OTHER PAGES --- */
+        .page-hero {
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+        }
+
+        .about-hero {
+            background-image: url('images/abouthero.jpg');
+        }
+
+        .franchise-hero {
+            background-image: url('images/franchishero.jpg');
+        }
+
+        .blogs-hero {
+            background-image: url('images/blog.jpg');
+        }
+
+        .contact-hero {
+            background-image: url('images/contacthome.jpg');
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            /* Black overlay with 50% opacity */
+            z-index: 1;
+        }
+
+        .page-hero>* {
+            position: relative;
+            z-index: 2;
+        }
+
+        .page {
+            display: none;
+            position: relative;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes breathe {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.03);
+            }
+        }
+
+        .animate-breathe {
+            animation: breathe 5s ease-in-out infinite;
+        }
+
+        @keyframes bobbing {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .animate-bobbing {
+            animation: bobbing 3s ease-in-out infinite;
+        }
+
+        @keyframes shine {
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        .btn-shine {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-shine::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .btn-shine:hover::after {
+            transform: translateX(100%);
+        }
+
+        /* --- NEW CINEMATIC SCROLL ANIMATIONS --- */
+        .scroll-animation {
+            opacity: 0;
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .scroll-animation.fade-in {
+            transform: translateY(40px);
+        }
+
+        .scroll-animation.fade-in-up {
+            transform: translateY(50px);
+        }
+
+        .scroll-animation.fade-in-left {
+            transform: translateX(-50px);
+        }
+
+        .scroll-animation.fade-in-right {
+            transform: translateX(50px);
+        }
+
+        .scroll-animation.visible {
+            opacity: 1;
+            transform: translate(0, 0);
+        }
+
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .hover-zoom img {
+            transition: transform 0.5s ease;
+        }
+
+        .hover-zoom:hover img {
+            transform: scale(1.1);
+        }
+
+        .card-tilt {
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            transform-style: preserve-3d;
+        }
+
+        .card-tilt:hover {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-section-wrapper {
+            background-image: url('https://images.unsplash.com/photo-1541167760496-1628856ab772?q=80&w=1937&auto=format&fit=crop');
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+            padding: 4rem 0;
+        }
+
+        .scrolling-gallery-container {
+            position: relative;
+            height: 450px;
+            perspective: 1500px;
+        }
+
+        .scrolling-gallery {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+        }
+
+        .gallery-item {
+            position: absolute;
+            top: 0;
+            left: 15%;
+            width: 70%;
+            height: 100%;
+            transform-origin: left center;
+            transition: transform 1s ease-in-out;
+            backface-visibility: hidden;
+            transform: rotateY(0deg);
+        }
+
+        .gallery-item.flipped {
+            transform: rotateY(-180deg);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            transition: background-color 0.3s, transform 0.3s, opacity 0.3s;
+            z-index: 100;
+        }
+
+        .gallery-nav:hover {
+            background-color: white;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .gallery-nav.prev {
+            left: 2%;
+        }
+
+        .gallery-nav.next {
+            right: 2%;
+        }
+
+        .decorative-leaf {
+            position: absolute;
+            z-index: 10;
+            filter: drop-shadow(5px 5px 15px rgba(0, 0, 0, 0.2));
+            transition: opacity 0.8s ease, transform 0.8s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .decorative-leaf.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background-color: #EAE0D5;
+            transform: translateX(-50%);
+            z-index: 0;
+        }
+
+        .timeline-progress {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 0%;
+            background-color: #3A5A40;
+        }
+
+        .timeline-item-container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .sub-image-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sub-image {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid white;
+            object-fit: cover;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transform: scale(0.5);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 20;
+        }
+
+        .group:hover .sub-image {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .group:hover .sub-image-1 {
+            transform: translate(-55px, -55px) scale(1);
+        }
+
+        .group:hover .sub-image-2 {
+            transform: translate(55px, -55px) scale(1);
+        }
+
+        .group:hover .sub-image-3 {
+            transform: translate(-55px, 55px) scale(1);
+        }
+
+        .group:hover .sub-image-4 {
+            transform: translate(55px, 55px) scale(1);
+        }
+
+        .snack-image {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            cursor: pointer;
+        }
+
+        .snack-image:hover {
+            transform: scale(1.05) rotate(2deg);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            z-index: 50;
+        }
+
+        .flying-snack {
+            position: fixed;
+            z-index: 9999;
+            pointer-events: none;
+        }
+
+        /* NEW MENU STYLES */
+        .menu-background {
+            background-color: #F8EFEA;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D3C1B3' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .menu-card {
+            background-color: #fff;
+            border: 1px solid #D3C1B3;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease-in-out;
+            position: relative;
+            overflow: hidden;
+            padding-bottom: 50px;
+            /* Space for the wave */
+        }
+
+        .menu-card:hover {
+            transform: translateY(-10px) rotate(1deg);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .menu-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50px;
+            background-color: #3A5A40;
+            clip-path: url(#wave);
+            transition: transform 0.4s ease-in-out;
+        }
+
+        .menu-card:hover::after {
+            transform: translateY(-10px);
+        }
+
+        .menu-title {
+            font-family: 'Caveat', cursive;
+            color: #6B4F4B;
+            border-bottom: 2px dotted #D3C1B3;
+        }
+
+        .menu-item p:first-child {
+            color: #4A4A4A;
+        }
+
+        .menu-item p:last-child {
+            color: #3A5A40;
+            font-weight: 600;
+        }
+
+        /* Modal Styles (Shared for Blog and Policy) */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #999;
+        }
+
+        .modal-close:hover {
+            color: #333;
+        }
+
+        body.modal-open {
+            overflow: hidden;
+        }
+
+        /* --- GENERAL LINK STYLING --- */
+        a:visited {
+            /* Prevents browser default purple color for visited links */
+            color: inherit;
+        }
+
+        /* --- NEW FOOTER STYLES --- */
+        .social-icon {
+            color: #EAE0D5;
+            /* Default color: brand-beige */
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .social-icon:hover {
+            transform: scale(1.2) rotate(-10deg);
+            /* Add a little rotation */
+            color: #fff;
+            /* Bright white on hover */
+        }
+
+        @media (max-width: 1024px) {
+            .decorative-leaf {
+                display: none;
+            }
+
+            .gallery-item {
+                left: 10%;
+                width: 80%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- SVG for the wave -->
+    <svg width="0" height="0">
+        <defs>
+            <clipPath id="wave" clipPathUnits="objectBoundingBox">
+                <path d="M0,0.5 C0.25,1, 0.3,0, 0.5,0.5 S0.75,1, 1,0.5 V1 H0 Z" />
+            </clipPath>
+        </defs>
+    </svg>
+
+    <!-- NEW Header Section -->
+    <header class="cafe-header">
+        <img src="images/teapot.png" alt="Teapot Doodle" class="doodle doodle-teapot">
+        <img src="images/cup.png" alt="Cup Doodle" class="doodle doodle-cup">
+        <img src="images/leafimg.png" alt="Tea Leaves Doodle" class="doodle doodle-leaves1">
+        <img src="images/leafimg.png" alt="Tea Leaves Doodle" class="doodle doodle-leaves2">
+
+        <nav class="nav-container">
+            <!-- Hamburger Button (Mobile Only) -->
+            <div class="md:hidden">
+                <button id="hamburger-btn" class="text-3xl text-brand-brown focus:outline-none">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+
+            <!-- Left Navigation Tabs (Desktop Only) -->
+            <div class="nav-links left hidden md:flex">
+                <a href="#" class="nav-tab nav-link" data-page="home">
+                    Home
+                    <img src="images/leafimg.png" alt="Tea Leaf" class="tea-leaf leaf1">
+                    <img src="images/leafimg.png" alt="Tea Leaf" class="tea-leaf leaf2">
+                </a>
+                <a href="#" class="nav-tab nav-link" data-page="about">
+                    About
+                    <img src="images/leafimg.png" alt="Tea Leaf" class="tea-leaf leaf1">
+                    <img src="images/leafimg.png" alt="Tea Leaf" class="tea-leaf leaf2">
+                </a>
+                <a href="#" class="nav-tab nav-link" data-page="cafes">
+                    Menu
+                    <img src="images/leafimg.png" alt="Tea Leaf" class="tea-leaf leaf1">
+                    <img src="images/leafimg.png" alt="Tea Leaf" class="tea-leaf leaf2">
+                </a>
+            </div>
+
+            <!-- Centered Logo -->
+            <div class="logo-container nav-link" data-page="home">
+                <img src="images/sharma jii kii chai logo.png" alt="Sharmaji Ki Chai Logo" class="logo-image">
+            </div>
+
+            <!-- Right Navigation Tabs (Desktop Only) -->
+            <div class="nav-links right hidden md:flex">
+                <a href="#" class="nav-tab nav-link" data-page="franchise">
+                    Franchise
+                    <img src="images/leafimg.png" alt="Tea Leaf" class="tea-leaf leaf1">
+                    <img src="images/leafimg.png" alt="Tea Leaf" class="tea-leaf leaf2">
+                </a>
+                <a href="#" class="nav-tab nav-link" data-page="blogs">
+                    Blogs
+                    <img src="images/leafimg.png" alt="Tea Leaf" class="tea-leaf leaf1">
+                    <img src="images/leafimg.png" alt="Tea Leaf" class="tea-leaf leaf2">
+                </a>
+                <a href="#" class="nav-tab nav-link" data-page="contact">
+                    Contact
+                    <img src="images/leafimg.png" alt="Tea Leaf" class="tea-leaf leaf1">
+                    <img src="images/leafimg.png" alt="Tea Leaf" class="tea-leaf leaf2">
+                </a>
+            </div>
+
+            <!-- Spacer for mobile to center logo -->
+            <div class="md:hidden w-8"></div>
+        </nav>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu"
+            class="hidden md:hidden bg-white shadow-lg absolute top-full left-0 w-full border-t border-brand-beige">
+            <a href="#" class="block text-lg py-3 px-6 text-brand-brown hover:bg-brand-beige nav-link"
+                data-page="home">Home</a>
+            <a href="#" class="block text-lg py-3 px-6 text-brand-brown hover:bg-brand-beige nav-link"
+                data-page="about">About</a>
+            <a href="#" class="block text-lg py-3 px-6 text-brand-brown hover:bg-brand-beige nav-link"
+                data-page="cafes">Menu</a>
+            <a href="#" class="block text-lg py-3 px-6 text-brand-brown hover:bg-brand-beige nav-link"
+                data-page="franchise">Franchise</a>
+            <a href="#" class="block text-lg py-3 px-6 text-brand-brown hover:bg-brand-beige nav-link"
+                data-page="blogs">Blogs</a>
+            <a href="#" class="block text-lg py-3 px-6 text-brand-brown hover:bg-brand-beige nav-link"
+                data-page="contact">Contact</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Home Page -->
+        <section id="home" class="page active">
+            <img src="images/leafimg.png" alt="Decorative Tea Leaf" class="decorative-leaf"
+                style="width: 350px; top: 20%; left: -68px; transform: rotate(-20deg);">
+            <img src="images/leafimg.png" alt="Decorative Tea Leaf" class="decorative-leaf"
+                style="width: 250px; top: 20%; right: -55px; transform: rotate(15deg) scaleX(-1);">
+            <div class="hero-section h-screen flex items-center justify-center text-white">
+                <div class="text-center bg-black bg-opacity-50 p-6 md:p-10 rounded-lg scroll-animation fade-in visible">
+                    <h1 class="text-5xl md:text-7xl font-bold mb-4 animate-breathe">Brewing Conversations</h1>
+                    <p class="text-2xl md:text-4xl">One Cup at a Time</p>
+                </div>
+            </div>
+            <div class="container mx-auto px-6 py-16 text-center scroll-animation fade-in-up">
+                <h2 class="text-3xl font-bold text-brand-brown mb-4">Welcome to Sharma Ji Ki Chai</h2>
+                <p class="max-w-3xl mx-auto text-lg">At Sharma Ji Ki Chai, we believe that a cup of chai is more than
+                    just a drink; it's an experience, a conversation starter, a moment of comfort. We are dedicated to
+                    bringing you the authentic taste of Indian chai, brewed with love and the finest ingredients, in an
+                    atmosphere that feels like home.</p>
+            </div>
+            <div class="bg-brand-beige py-16">
+                <div class="container mx-auto px-6">
+                    <h2 class="text-3xl font-bold text-center text-brand-brown mb-12 scroll-animation fade-in-up">Our
+                        Cafe Formats</h2>
+                    <div class="grid md:grid-cols-2 gap-12 items-center">
+                        <div
+                            class="text-center scroll-animation fade-in-left group overflow-hidden rounded-lg card-tilt">
+                            <div class="overflow-hidden rounded-lg"><img
+                                    src="images/hero11.jpeg"
+                                    alt="Quick Service Cafe"
+                                    class="rounded-lg shadow-lg mx-auto mb-4 w-full transform group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <h3 class="text-2xl font-bold text-brand-green mt-4">A Place to Talk</h3>
+                            <p>Our quick-service outlets designed for brief, refreshing chai breaks and lively chats.
+                            </p>
+                        </div>
+                        <div
+                            class="text-center scroll-animation fade-in-right group overflow-hidden rounded-lg card-tilt">
+                            <div class="overflow-hidden rounded-lg"><img
+                                    src="images/hero22.jpeg"
+                                    alt="Desi Cafe"
+                                    class="rounded-lg shadow-lg mx-auto mb-4 w-full transform group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <h3 class="text-2xl font-bold text-brand-brown mt-4">The Desi Cafe</h3>
+                            <p>Spacious, beautifully designed cafes perfect for leisurely conversations and soaking in
+                                the culture.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container mx-auto px-6 py-16">
+                <h2 class="text-3xl font-bold text-center text-brand-brown mb-12 scroll-animation fade-in-up">From Our
+                    Blog</h2>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- BLOG POST 1 -->
+                    <div class="bg-white p-6 rounded-lg shadow-md scroll-animation fade-in-up card-tilt blog-card hover-lift"
+                        data-title="The Art of Brewing the Perfect Masala Chai" data-image="images/bloghome1.jpeg"
+                        data-date="August 15, 2025">
+                        <div class="overflow-hidden rounded-md mb-4 hover-zoom"><img src="images/bloghome1.jpeg"
+                                alt="Blog Post 1" class="w-full"></div>
+                        <h3 class="font-bold text-xl mb-2">The Art of Brewing the Perfect Masala Chai</h3>
+                        <p class="text-gray-600 mb-4">Discover the secrets behind our signature masala chai...</p>
+                        <a href="#" class="text-brand-brown font-semibold read-more-btn">Read More &rarr;</a>
+                        <div class="blog-content-full hidden">
+                            <p>This is the full, detailed content for the 'Art of Brewing' blog post. It goes into the
+                                history of masala chai, the specific spices we use, and the step-by-step process to
+                                create the perfect brew at home. We'll discuss the importance of fresh ginger, the right
+                                way to crush cardamom, and the ideal simmering time.</p>
+                            <p>We believe that chai is an experience, and with these tips, you can recreate the
+                                authentic Sharma Ji Ki Chai magic in your own kitchen. Enjoy the aroma, savor the
+                                flavor, and start your own conversations.</p>
+                        </div>
+                    </div>
+                    <!-- BLOG POST 2 -->
+                    <div class="bg-white p-6 rounded-lg shadow-md scroll-animation fade-in-up card-tilt blog-card hover-lift"
+                        data-title="Pairing Snacks with Your Favorite Chai" data-image="images/bloghome2.jpeg"
+                        data-date="August 10, 2025" style="animation-delay: 0.2s;">
+                        <div class="overflow-hidden rounded-md mb-4 hover-zoom"><img src="images/bloghome2.jpeg"
+                                alt="Blog Post 2" class="w-full"></div>
+                        <h3 class="font-bold text-xl mb-2">Pairing Snacks with Your Favorite Chai</h3>
+                        <p class="text-gray-600 mb-4">From samosas to mathri, find the perfect companion...</p>
+                        <a href="#" class="text-brand-brown font-semibold read-more-btn">Read More &rarr;</a>
+                        <div class="blog-content-full hidden">
+                            <p>A cup of chai is always better with a tasty snack. In this post, we explore the classic
+                                pairings that have been loved for generations. From the crispy, savory delight of a hot
+                                samosa to the wholesome goodness of mathri, we'll help you find the perfect companion
+                                for your favorite cup of chai.</p>
+                            <p>We'll also introduce some modern twists and unexpected pairings that will surprise and
+                                delight your taste buds. Get ready to elevate your chai experience!</p>
+                        </div>
+                    </div>
+                    <!-- BLOG POST 3 -->
+                    <div class="bg-white p-6 rounded-lg shadow-md scroll-animation fade-in-up card-tilt blog-card hover-lift"
+                        data-title="New Store Opening in Bengaluru!" data-image="images/bloghome3.jpeg"
+                        data-date="August 5, 2025" style="animation-delay: 0.4s;">
+                        <div class="overflow-hidden rounded-md mb-4 hover-zoom"><img src="images/bloghome3.jpeg"
+                                alt="Blog Post 3" class="w-full"></div>
+                        <h3 class="font-bold text-xl mb-2">New Store Opening in Vadodara!</h3>
+                        <p class="text-gray-600 mb-4">We are excited to announce our newest location...</p>
+                        <a href="#" class="text-brand-brown font-semibold read-more-btn">Read More &rarr;</a>
+                        <div class="blog-content-full hidden">
+                            <p>The Sharma Ji Ki Chai family is growing! We are thrilled to announce the grand opening of
+                                our newest location in the heart of Vadodara. Located in the vibrant vasna
+                                neighborhood, our new cafe is ready to welcome you with the familiar warmth and
+                                authentic flavors you love.</p>
+                            <p>Come celebrate with us! Join us for our opening week festivities, enjoy a complimentary
+                                cup of our signature masala chai, and become a part of our new community. We can't wait
+                                to see you there!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-section-wrapper">
+                <div class="container mx-auto px-6">
+                    <h2 class="text-3xl font-bold text-center text-white mb-12 scroll-animation fade-in-up">Moments at
+                        Sharma Ji Ki Chai</h2>
+                    <div class="scrolling-gallery-container scroll-animation fade-in">
+                        <div id="scrolling-gallery" class="scrolling-gallery">
+                            <div class="gallery-item"><img src="images/movement1.jpg" alt="Chai Moment 1"></div>
+                            <div class="gallery-item"><img src="images/movement2.jpg" alt="Chai Moment 2"></div>
+                            <div class="gallery-item"><img src="images/movement3.jpg" alt="Chai Moment 3"></div>
+                            <div class="gallery-item"><img src="images/movement4.jpg" alt="Chai Moment 4"></div>
+                            <div class="gallery-item"><img src="images/movement5.jpg" alt="Chai Moment 5"></div>
+                            <div class="gallery-item"><img src="images/movement6.jpg" alt="Chai Moment 6"></div>
+                            <div class="gallery-item"><img src="images/movement7.jpg" alt="Chai Moment 7"></div>
+                        </div>
+                        <div id="gallery-prev" class="gallery-nav prev"><i
+                                class="fas fa-chevron-left text-brand-brown"></i></div>
+                        <div id="gallery-next" class="gallery-nav next"><i
+                                class="fas fa-chevron-right text-brand-brown"></i></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Delicious Desi Snacks Section -->
+            <div class="bg-white py-16 relative overflow-hidden">
+                <div class="container mx-auto px-6 pb-24 md:pb-48">
+                    <div class="flex flex-col md:flex-row-reverse items-center">
+                        <!-- Text Content -->
+                        <div
+                            class="w-full md:w-1/2 z-10 text-center md:text-left p-4 md:pl-12 scroll-animation fade-in-left">
+                            <h2 class="text-4xl sm:text-5xl md:text-6xl font-black text-brand-green uppercase"
+                                style="line-height: 1.1;">
+                                Delicious
+                                <br>
+                                Desi Snacks
+                            </h2>
+                            <p class="mt-6 text-gray-600 max-w-lg mx-auto md:mx-0">
+                                We know that an Indian heart always yearns for desi snacks when it comes to Chai-Nashta!
+                                That's why you'll get the authentic desi snacks such as Samosa, Thepla, Upma, Poha,
+                                Handva, Vadapav, Tadka Noodles, Maska Bun, and Farali Sabudana Vada.
+                            </p>
+                            <div class="mt-8 flex space-x-4 justify-center md:justify-start">
+                                <a href="https://zomato.onelink.me/xqzv/f6bsilvp"
+                                    class="bg-red-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-red-600 transition-transform transform hover:scale-105">
+                                    zomato
+                                </a>
+                                <a href="https://www.swiggy.com/menu/1078512?source=sharing"
+                                    class="bg-orange-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-orange-600 transition-transform transform hover:scale-105">
+                                    SWIGGY
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Image Collage -->
+                        <div
+                            class="w-full md:w-1/2 relative h-96 md:h-[500px] flex items-center justify-center scroll-animation fade-in-right snacks-collage">
+                            <div class="relative w-full h-full">
+                                <img src="images/snacks.jpg"
+                                    onerror="this.onerror=null;this.src='https://placehold.co/600x400/EFEFEF/3A5A40?text=Snacks';"
+                                    alt="Sandwich Box" class="snack-image absolute w-80 rounded-lg shadow-xl z-30"
+                                    style="top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(5deg);">
+                                <img src="images/samosa.jpg"
+                                    onerror="this.onerror=null;this.src='https://placehold.co/600x400/EFEFEF/3A5A40?text=Samosa';"
+                                    alt="Samosas" class="snack-image absolute w-64 rounded-lg shadow-xl z-20"
+                                    style="top: 35%; left: 30%; transform: translate(-50%, -50%) rotate(-15deg);">
+                                <img src="images/tea.jpg"
+                                    onerror="this.onerror=null;this.src='https://placehold.co/600x400/EFEFEF/3A5A40?text=Tea';"
+                                    alt="Tea in cup" class="snack-image absolute w-48 rounded-lg shadow-xl z-40"
+                                    style="top: 75%; left: 35%; transform: translate(-50%, -50%) rotate(10deg);">
+                                <img src="images/coffee (2).jpg"
+                                    onerror="this.onerror=null;this.src='https://placehold.co/600x400/EFEFEF/3A5A40?text=Chai';"
+                                    alt="Tea in another cup" class="snack-image absolute w-56 rounded-lg shadow-xl z-10"
+                                    style="top: 30%; left: 70%; transform: translate(-50%, -50%) rotate(20deg);">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cycle Man Image -->
+                <div id="cycle-man-container" class="absolute bottom-0 right-5 md:right-20 w-64 md:w-80 z-20">
+                    <img src="images/cycleman.png" alt="Delivery Man on Cycle" class="w-full">
+                </div>
+            </div>
+
+        </section>
+        <!-- All other sections would follow here, they are omitted for brevity but are in the full code -->
+        <section id="about" class="page">
+            <img src="images/leafimg.png" alt="Decorative Tea Leaf" class="decorative-leaf"
+                style="width: 350px; top: 19%; left: 650px; transform: rotate(450deg);">
+            <div class="page-hero about-hero text-white py-20">
+                <div class="container mx-auto px-6 text-center scroll-animation fade-in">
+                    <h1 class="text-4xl font-bold">Our Story</h1>
+                    <p class="text-xl mt-4 max-w-3xl mx-auto">From a single vision in 2025 to a nationwide community of
+                        chai lovers, our journey has been fueled by a passion for authentic Indian chai culture.</p>
+                </div>
+            </div>
+            <div class="container mx-auto px-6 py-16 space-y-20">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="scroll-animation fade-in-right">
+                        <h2 class="text-3xl font-bold text-brand-brown mb-4">Founded on a Dream</h2>
+                        <p class="text-lg mb-4">Sharma Ji Ki Chai was born in 2025 from a simple idea: to create a space
+                            where people could connect over a genuinely good cup of chai. We wanted to revive the
+                            tradition of "chai pe charcha" (discussions over tea) and make it accessible to everyone,
+                            everywhere.</p>
+                        <h3 class="text-2xl font-bold text-brand-brown mt-8 mb-4">Our Mission & Values</h3>
+                        <ul class="list-disc list-inside space-y-2 text-lg">
+                            <li><strong>Authenticity:</strong> Serving real, freshly-brewed chai.</li>
+                            <li><strong>Community:</strong> Building spaces for connection.</li>
+                            <li><strong>Quality:</strong> Sourcing the finest tea leaves and spices.</li>
+                            <li><strong>Hospitality:</strong> Treating every guest like family.</li>
+                        </ul>
+                    </div>
+                    <div class="scroll-animation fade-in-left hover-zoom rounded-lg overflow-hidden">
+                        <img src="images/foundedondream.jpg" alt="Brand Story" class="rounded-lg shadow-lg">
+                    </div>
+                </div>
+
+                <!-- NEW CONTENT SECTION 1 -->
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="scroll-animation fade-in-left md:order-2">
+                        <h2 class="text-3xl font-bold text-brand-green mb-4">The Sharma Ji Ki Chai Experience</h2>
+                        <p class="text-lg mb-4">Step into any of our cafes and you're greeted by more than just the
+                            aroma of brewing spices. It's a feeling of comfort, a pause from the rush of daily life.
+                            We've created a space where the warmth of the chai is matched only by the warmth of the
+                            conversations around you. It's a sensory journey—the clink of glasses, the scent of fresh
+                            ginger, and the shared laughter of friends.</p>
+                    </div>
+                    <div class="scroll-animation fade-in-right md:order-1 hover-zoom rounded-lg overflow-hidden">
+                        <img src="images/enjoying chai.jpg" alt="Enjoying Chai" class="rounded-lg shadow-lg">
+                    </div>
+                </div>
+
+                <!-- NEW CONTENT SECTION 2 -->
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="scroll-animation fade-in-right">
+                        <img src="images/leafimg.png" alt="Decorative Tea Leaf" class="decorative-leaf"
+                            style="width: 350px; top: -300%; right: -70px; transform: rotate(-82deg) scaleX(-1);">
+                        <h2 class="text-3xl font-bold text-brand-brown mb-4">Our Commitment to Quality</h2>
+                        <p class="text-lg mb-4">A perfect cup of chai starts with the finest ingredients. We travel to
+                            the lush tea gardens of Assam and Darjeeling to source single-origin leaves. Our signature
+                            masala is a secret family recipe, with spices like cardamom, cloves, and cinnamon freshly
+                            ground in-house every day. This dedication ensures that every sip you take is authentic,
+                            aromatic, and absolutely perfect.</p>
+                    </div>
+                    <div class="scroll-animation fade-in-left hover-zoom rounded-lg overflow-hidden">
+                        <img src="images/enjoying chai.jpg" alt="Tea Leaves and Spices" class="rounded-lg shadow-lg">
+                    </div>
+                </div>
+
+                <!-- NEW CONTENT SECTION 3 -->
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="scroll-animation fade-in-left md:order-2">
+                        <img src="images/leafimg.png" alt="Decorative Tea Leaf" class="decorative-leaf"
+                            style="width: 325px; top: -180%; left: -77px; transform: rotate(435deg);">
+                        <h2 class="text-3xl font-bold text-brand-green mb-4">More Than Just a Cafe</h2>
+                        <p class="text-lg mb-4">We believe a chai cafe should be the heartbeat of its community. Our
+                            spaces are designed to be hubs of connection and creativity. From hosting open mic nights
+                            and local art exhibitions to simply being a place where new ideas are born over a cup of
+                            tea, we are proud to be a part of your stories, your friendships, and your community's
+                            culture.</p>
+                    </div>
+                    <div class="scroll-animation fade-in-right md:order-1 hover-zoom rounded-lg overflow-hidden">
+                        <img src="images/morethanjustcafe.jpg" class="rounded-lg shadow-lg">
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Cafes/Menu Page -->
+        <section id="cafes" class="page menu-background">
+            <div class="container mx-auto px-6 py-16">
+                <div class="text-center mb-16 scroll-animation fade-in-up">
+                    <h1 class="text-5xl font-bold text-brand-brown font-handwritten">Our Menu</h1>
+                    <p class="text-xl mt-2 text-gray-600">Authentic Flavors, Brewed with Love</p>
+                </div>
+
+                <!-- ADDED MENU IMAGE HERE -->
+                <div class="mb-16 text-center scroll-animation fade-in-up">
+                    <img src="images/menu updated.jpg" alt="Sharma Ji Ki Chai Full Menu" class="w-full max-w-4xl mx-auto rounded-lg shadow-2xl hover-lift">
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+
+                    <!-- Card 1: Hot Beverages -->
+                    <div class="menu-card p-6 scroll-animation fade-in-up">
+                        <h2 class="menu-title text-3xl mb-4 pb-2">Hot Beverages</h2>
+                        <div class="space-y-3">
+                            <div class="flex justify-between menu-item">
+                                <p>Chai Regular</p>
+                                <p>₹12.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Jaggery (Gud) Chai</p>
+                                <p>₹20.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Saffron (Kesar) Chai</p>
+                                <p>₹25.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Rose (Gulab) Tea</p>
+                                <p>₹25.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Kullad Chai</p>
+                                <p>₹20.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Ginger Chai</p>
+                                <p>₹20.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Green Tea</p>
+                                <p>₹40.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Ginger Elaichi Chai</p>
+                                <p>₹30.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Sharma Ji Special Chai</p>
+                                <p>₹40.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Hot Milk</p>
+                                <p>₹30.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Bournvita Milk</p>
+                                <p>₹40.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Coffee (Half)</p>
+                                <p>₹20.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Coffee (Full)</p>
+                                <p>₹40.00</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Special Items -->
+                    <div class="menu-card p-6 scroll-animation fade-in-up" style="animation-delay: 0.1s;">
+                        <h2 class="menu-title text-3xl mb-4 pb-2">Special Items</h2>
+                        <div class="space-y-3">
+                            <div class="flex justify-between menu-item">
+                                <p>Sikanji (Cold)</p>
+                                <p>₹40.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Kesar Pista Milk Hot</p>
+                                <p>₹60.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Dry Fruit Masala Milk (Hot)</p>
+                                <p>₹60.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Hot Chocolate Dry Fruits Milk</p>
+                                <p>₹70.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Special Chai with Chilli Garlic Poppers (5 Pcs)</p>
+                                <p>₹50.00</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Maggi -->
+                    <div class="menu-card p-6 scroll-animation fade-in-up" style="animation-delay: 0.2s;">
+                        <h2 class="menu-title text-3xl mb-4 pb-2">Maggi</h2>
+                        <div class="space-y-3">
+                            <div class="flex justify-between menu-item">
+                                <p>Classic</p>
+                                <p>₹70.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Veg Maggi</p>
+                                <p>₹80.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Cheese Maggi</p>
+                                <p>₹90.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Schezwan Maggi</p>
+                                <p>₹90.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Garlic Tadka</p>
+                                <p>₹110.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Paneer Maggi</p>
+                                <p>₹120.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Jain Maggi</p>
+                                <p>₹90.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Veg Maggi with Chilli Garlic Poppers</p>
+                                <p>₹120.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Veg Maggi with Jalapeno Cheesy Pops</p>
+                                <p>₹140.00</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 4: Snacks -->
+                    <div class="menu-card p-6 scroll-animation fade-in-up">
+                        <h2 class="menu-title text-3xl mb-4 pb-2">Snacks</h2>
+                        <div class="space-y-3">
+                            <div class="flex justify-between menu-item">
+                                <p>Samosa (2 Pcs)</p>
+                                <p>₹40.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Tippy Cheese Chilli Corn (5 Pcs)</p>
+                                <p>₹110.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Tippy Mexican Bean (5 Pcs)</p>
+                                <p>₹110.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Cheesy Jalapeno Poppers (6 Pcs)</p>
+                                <p>₹170.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Noodle Spring Roll (6 Pcs)</p>
+                                <p>₹240.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Jalapeno Cheesy Pops (8 Pcs)</p>
+                                <p>₹140.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Chilli Garlic Poppers (12 Pcs)</p>
+                                <p>₹100.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Crispy Veggie Stix (8 Pcs)</p>
+                                <p>₹140.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Veg. Manchurian Balls (8 Pcs)</p>
+                                <p>₹140.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Hara Bhara Kabab (8Pcs)</p>
+                                <p>₹180.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Mozzarella Cheese Stix (6 Pcs)</p>
+                                <p>₹140.00</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 5: Quick Bites -->
+                    <div class="menu-card p-6 scroll-animation fade-in-up" style="animation-delay: 0.1s;">
+                        <h2 class="menu-title text-3xl mb-4 pb-2">Quick Bites</h2>
+                        <div class="space-y-3">
+                            <div class="flex justify-between menu-item">
+                                <p>Vadapav</p>
+                                <p>₹30.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Bombay Vadapav</p>
+                                <p>₹30.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Crunchy Vadapav</p>
+                                <p>₹35.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Butter Vadapav</p>
+                                <p>₹40.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Cheese Vadapav</p>
+                                <p>₹50.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Dabeli</p>
+                                <p>₹30.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Butter Dabeli</p>
+                                <p>₹40.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Cheese Dabeli</p>
+                                <p>₹50.00</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 6: Breads & Paratha -->
+                    <div class="menu-card p-6 scroll-animation fade-in-up" style="animation-delay: 0.2s;">
+                        <h2 class="menu-title text-3xl mb-4 pb-2">Breads & Paratha</h2>
+                        <div class="space-y-3">
+                            <div class="flex justify-between menu-item">
+                                <p>Aloo Paratha (2 Pcs)</p>
+                                <p>₹90.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Mix Veg Paratha (2 Pcs)</p>
+                                <p>₹110.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Paneer Paratha (2 Pcs)</p>
+                                <p>₹150.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Garlic Bread (5 Pcs)</p>
+                                <p>₹125.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Veg Cheese Garlic Bread (5 Pcs)</p>
+                                <p>₹150.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Stuffed Cheese Garlic Sticks (6 Pcs)</p>
+                                <p>₹140.00</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 7: Sandwich & Frankie -->
+                    <div class="menu-card p-6 scroll-animation fade-in-up">
+                        <h2 class="menu-title text-3xl mb-4 pb-2">Sandwich & Frankie</h2>
+                        <div class="space-y-3">
+                            <div class="flex justify-between menu-item">
+                                <p>Veg Sandwich</p>
+                                <p>₹80.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Veg Cheese Sandwich</p>
+                                <p>₹100.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Bread Butter</p>
+                                <p>₹50.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Cheese Butter</p>
+                                <p>₹70.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Cheese Chutney</p>
+                                <p>₹85.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Grill Veg Sandwich</p>
+                                <p>₹110.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Grill Veg Cheese Sandwich</p>
+                                <p>₹130.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Grill Bread Butter</p>
+                                <p>₹80.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Grill Cheese Butter</p>
+                                <p>₹110.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Grill Cheese Chutney</p>
+                                <p>₹130.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Veg Frankie</p>
+                                <p>₹90.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Cheese Frankie</p>
+                                <p>₹110.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Mayo Frankie</p>
+                                <p>₹100.00</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 8: Burger -->
+                    <div class="menu-card p-6 scroll-animation fade-in-up" style="animation-delay: 0.1s;">
+                        <h2 class="menu-title text-3xl mb-4 pb-2">Burger</h2>
+                        <div class="space-y-3">
+                            <div class="flex justify-between menu-item">
+                                <p>Classic Burger</p>
+                                <p>₹70.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Veg Burger</p>
+                                <p>₹100.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Cheese Burger</p>
+                                <p>₹110.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Spicy Paneer Burger</p>
+                                <p>₹170.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Kurkure Cheese Burger</p>
+                                <p>₹170.00</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 9: Pizza -->
+                    <div class="menu-card p-6 scroll-animation fade-in-up" style="animation-delay: 0.2s;">
+                        <h2 class="menu-title text-3xl mb-4 pb-2">Pizza (7")</h2>
+                        <div class="space-y-3">
+                            <div class="flex justify-between menu-item">
+                                <p>Margarita</p>
+                                <p>₹95.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Italian</p>
+                                <p>₹140.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Jain Italian</p>
+                                <p>₹140.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Tandoori Paneer</p>
+                                <p>₹140.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Chili Manchurian</p>
+                                <p>₹140.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Mexican</p>
+                                <p>₹140.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>American Garden</p>
+                                <p>₹140.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Basil Pesto</p>
+                                <p>₹140.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Schezwan Paneer</p>
+                                <p>₹140.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Cheesy 7</p>
+                                <p>₹140.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Veg Paradise</p>
+                                <p>₹140.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Cheese Onion Capsicum</p>
+                                <p>₹140.00</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 10: Fries -->
+                    <div class="menu-card p-6 scroll-animation fade-in-up">
+                        <h2 class="menu-title text-3xl mb-4 pb-2">Fries</h2>
+                        <div class="space-y-3">
+                            <div class="flex justify-between menu-item">
+                                <p>Premium Salted Fries (9mm)</p>
+                                <p>₹140.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Normal Salted Fries (6mm)</p>
+                                <p>₹90.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Crinkle Peri-Peri Fries</p>
+                                <p>₹140.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Peri Peri Fries (6mm/9mm)</p>
+                                <p>₹110/₹160</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Cheese Fries (6mm/9mm)</p>
+                                <p>₹120/₹170</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Mayonnaise Fries (6mm/9mm)</p>
+                                <p>₹110/₹160</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 11: Meal -->
+                    <div class="menu-card p-6 scroll-animation fade-in-up" style="animation-delay: 0.1s;">
+                        <h2 class="menu-title text-3xl mb-4 pb-2">Meal</h2>
+                        <div class="space-y-3">
+                            <div class="flex justify-between menu-item">
+                                <p>Pav Bhaji</p>
+                                <p>₹130.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Cholley</p>
+                                <p>₹100.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Kulcha (2 Pcs)</p>
+                                <p>₹70.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Butter Kulcha (2 Pcs)</p>
+                                <p>₹90.00</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 12: Momos -->
+                    <div class="menu-card p-6 scroll-animation fade-in-up" style="animation-delay: 0.2s;">
+                        <h2 class="menu-title text-3xl mb-4 pb-2">Momos</h2>
+                        <div class="space-y-3">
+                            <div class="flex justify-between menu-item">
+                                <p>Fry Classic Momos</p>
+                                <p>₹110.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Fry Schezwan Momo</p>
+                                <p>₹110.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Fry Paneer Tikka Momos</p>
+                                <p>₹230.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Fry Cheesy Paneer Momo</p>
+                                <p>₹250.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Fry Kurkure Momos</p>
+                                <p>₹140.00</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 13: Shakes -->
+                    <div class="menu-card p-6 scroll-animation fade-in-up">
+                        <h2 class="menu-title text-3xl mb-4 pb-2">Shakes</h2>
+                        <div class="space-y-3">
+                            <div class="flex justify-between menu-item">
+                                <p>Oreo</p>
+                                <p>₹100.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Kitkat</p>
+                                <p>₹90.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Cold Coco</p>
+                                <p>₹90.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Cold Coffee</p>
+                                <p>₹70.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Oreo Shake with Ice Cream</p>
+                                <p>₹120.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Kitkat Shake with Ice Cream</p>
+                                <p>₹110.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Cold Coffee with Ice Cream</p>
+                                <p>₹85.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Kesar Pista Shake</p>
+                                <p>₹80.00</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 14: Farali & South Indian -->
+                    <div class="menu-card p-6 scroll-animation fade-in-up" style="animation-delay: 0.1s;">
+                        <h2 class="menu-title text-3xl mb-4 pb-2">Farali & South Indian</h2>
+                        <div class="space-y-3">
+                            <div class="flex justify-between menu-item">
+                                <p>French Fries</p>
+                                <p>₹90.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Sabudana Vada (6 Pcs)</p>
+                                <p>₹90.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Sabudana Khichdi</p>
+                                <p>₹80.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Masala Dosa Finger Roll (8 Pcs)</p>
+                                <p>₹140.00</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 15: Extras -->
+                    <div class="menu-card p-6 scroll-animation fade-in-up" style="animation-delay: 0.2s;">
+                        <h2 class="menu-title text-3xl mb-4 pb-2">Extras</h2>
+                        <div class="space-y-3">
+                            <div class="flex justify-between menu-item">
+                                <p>Extra Pav (2 Pcs)</p>
+                                <p>₹40.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Extra Cheese</p>
+                                <p>₹30.00</p>
+                            </div>
+                            <div class="flex justify-between menu-item">
+                                <p>Extra Butter</p>
+                                <p>₹20.00</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="text-center mt-12 text-brand-brown text-sm scroll-animation fade-in-up">
+                    <p>* Cold drinks & water on MRP</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="franchise" class="page">
+            <div class="page-hero franchise-hero text-white py-20">
+                <div class="container mx-auto px-6 text-center scroll-animation fade-in">
+                    <h1 class="text-4xl font-bold">A Fresh Opportunity is Brewing!</h1>
+                    <p class="text-xl mt-4 max-w-3xl mx-auto">Be a pioneer! We are launching our brand new franchise
+                        program and looking for passionate partners to grow with us from the very beginning.</p>
+                </div>
+            </div>
+            <div class="container mx-auto px-6 py-16">
+                <div class="grid md:grid-cols-2 gap-12 items-center mb-20">
+                    <div class="scroll-animation fade-in-right">
+                        <h2 class="text-3xl font-bold text-brand-brown mb-6">The Opportunity</h2>
+                        <p class="text-lg mb-4">The demand for authentic, high-quality chai and community-focused cafes
+                            is growing rapidly. Sharma Ji Ki Chai is perfectly positioned to meet this demand. As a
+                            franchisee, you'll be tapping into a proven concept with a strong brand identity, serving a
+                            product that is loved by millions across the nation.</p>
+                        <p class="text-lg">This is your chance to build a thriving business while being a central part
+                            of your local community.</p>
+                    </div>
+                    <div class="scroll-animation fade-in-left hover-zoom rounded-lg overflow-hidden">
+                        <img src="images/franchise.jpg" alt="Franchise Opportunity" class="rounded-lg shadow-lg">
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 md:p-12 rounded-lg shadow-lg scroll-animation fade-in-up mb-20">
+                    <h2 class="text-3xl font-bold text-center text-brand-green mb-10">What We Provide: A Partnership for
+                        Success</h2>
+                    <div class="grid md:grid-cols-2 gap-8 text-lg">
+                        <div class="scroll-animation fade-in-up">
+                            <h3 class="font-bold text-xl text-brand-brown mb-2">Site Selection & Build-Out</h3>
+                            <p>We provide expert guidance in identifying the perfect location and assistance with cafe
+                                design and construction to recreate the signature Sharma Ji Ki Chai ambiance.</p>
+                        </div>
+                        <div class="scroll-animation fade-in-up" style="animation-delay: 0.1s;">
+                            <h3 class="font-bold text-xl text-brand-brown mb-2">Comprehensive Training</h3>
+                            <p>Our extensive training program covers everything from our secret chai recipes and food
+                                preparation to day-to-day operations, customer service, and financial management.</p>
+                        </div>
+                        <div class="scroll-animation fade-in-up" style="animation-delay: 0.2s;">
+                            <h3 class="font-bold text-xl text-brand-brown mb-2">Marketing & Brand Support</h3>
+                            <p>You'll benefit from our national brand campaigns and receive a toolkit of local marketing
+                                materials to attract and retain a loyal customer base.</p>
+                        </div>
+                        <div class="scroll-animation fade-in-up" style="animation-delay: 0.3s;">
+                            <h3 class="font-bold text-xl text-brand-brown mb-2">Supply Chain</h3>
+                            <p>Gain access to our established supply chain for our exclusive tea blends, spices, and
+                                other key ingredients, ensuring consistent quality and taste.</p>
+                        </div>
+                        <div class="scroll-animation fade-in-up" style="animation-delay: 0.4s;">
+                            <h3 class="font-bold text-xl text-brand-brown mb-2">Ongoing Operational Support</h3>
+                            <p>Our dedicated support team is always on hand to provide guidance and help you run your
+                                cafe smoothly and efficiently.</p>
+                        </div>
+                        <div class="scroll-animation fade-in-up" style="animation-delay: 0.5s;">
+                            <h3 class="font-bold text-xl text-brand-brown mb-2">Technology & Systems</h3>
+                            <p>Leverage our modern POS systems and operational technology to manage sales, inventory,
+                                and customer relationships with ease.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="mt-20 max-w-4xl mx-auto bg-brand-beige p-8 rounded-lg shadow-lg scroll-animation fade-in-up">
+                    <h2 class="text-3xl font-bold text-center text-brand-brown mb-2">Be the First to Know</h2>
+                    <p class="text-center text-gray-600 mb-8">We are looking for individuals with a passion for chai, a
+                        commitment to quality, and a strong business sense. If this sounds like you, fill out the form
+                        below to get exclusive early access to our franchise details.</p>
+                    <form id="franchiseForm">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <input type="text" name="fullName" placeholder="Full Name" required
+                                class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-brown transition hover-lift">
+                            <input type="email" name="email" placeholder="Email Address" required
+                                class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-brown transition hover-lift">
+                            <input type="tel" name="phone" placeholder="Phone Number" required
+                                class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-brown transition hover-lift">
+                            <input type="text" name="city" placeholder="City of Interest" required
+                                class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-brown transition hover-lift">
+                        </div>
+                        <textarea name="interest" placeholder="Tell us a little about why you're interested (Optional)" rows="5"
+                            class="w-full mt-6 p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-brown transition hover-lift"></textarea>
+                        <button type="submit"
+                            class="w-full mt-6 bg-brand-green text-white font-bold py-3 px-6 rounded-md hover:bg-green-800 transition duration-300 transform hover:-translate-y-1 btn-shine">Request
+                            Information</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section id="blogs" class="page">
+            <div class="page-hero blogs-hero py-20">
+                <div class="container mx-auto px-6 text-center scroll-animation fade-in text-white">
+                    <h1 class="text-4xl font-bold">Stories from the Kulhad</h1>
+                    <p class="text-xl mt-4 max-w-3xl mx-auto">Dive into the world of chai, culture, and conversations.
+                    </p>
+                </div>
+            </div>
+            <div class="container mx-auto px-6 py-16">
+                <!-- Featured Blog Post -->
+                <div class="bg-white p-6 md:p-8 rounded-lg shadow-lg mb-16 scroll-animation fade-in-up blog-card hover-lift"
+                    data-title="The Art of Brewing the Perfect Masala Chai" data-image="images/blog 1.png"
+                    data-date="August 15, 2025">
+                    <div class="grid md:grid-cols-2 gap-8 items-center">
+                        <div class="overflow-hidden rounded-lg hover-zoom">
+                            <img src="images/blog 1.png" alt="Featured Blog Post" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <span class="text-sm text-gray-500">August 15, 2025</span>
+                            <h2 class="text-3xl font-bold text-brand-brown my-2">The Art of Brewing the Perfect Masala
+                                Chai</h2>
+                            <p class="text-lg text-gray-600 mb-4">Discover the secrets behind our signature masala chai,
+                                a recipe passed down through generations. It's more than just a drink; it's a ritual
+                                that awakens the senses...</p>
+                            <a href="#" class="text-brand-green font-bold text-lg read-more-btn">Read More &rarr;</a>
+                            <div class="blog-content-full hidden">
+                                <p>This is the full, detailed content for the 'Art of Brewing' blog post. It goes into
+                                    the history of masala chai, the specific spices we use, and the step-by-step process
+                                    to create the perfect brew at home. We'll discuss the importance of fresh ginger,
+                                    the right way to crush cardamom, and the ideal simmering time.</p>
+                                <p>We believe that chai is an experience, and with these tips, you can recreate the
+                                    authentic Sharma Ji Ki Chai magic in your own kitchen. Enjoy the aroma, savor the
+                                    flavor, and start your own conversations.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Blog Grid -->
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-white p-6 rounded-lg shadow-md scroll-animation fade-in-up card-tilt blog-card hover-lift"
+                        data-title="Pairing Snacks with Your Favorite Chai" data-image="images/blog 2.png"
+                        data-date="August 10, 2025">
+                        <div class="overflow-hidden rounded-md mb-4 hover-zoom"><img src="images/blog 2.png"
+                                alt="Blog Post 2" class="w-full h-48 object-cover"></div>
+                        <span class="text-sm text-gray-500">August 10, 2025</span>
+                        <h3 class="font-bold text-xl my-2">Pairing Snacks with Your Favorite Chai</h3>
+                        <p class="text-gray-600 mb-4">From the crispy delight of a samosa to the wholesome goodness of
+                            mathri, find the perfect companion for your cup of chai.</p>
+                        <a href="#" class="text-brand-brown font-semibold read-more-btn">Read More &rarr;</a>
+                        <div class="blog-content-full hidden">
+                            <p>A cup of chai is always better with a tasty snack. In this post, we explore the classic
+                                pairings that have been loved for generations. From the crispy, savory delight of a hot
+                                samosa to the wholesome goodness of mathri, we'll help you find the perfect companion
+                                for your favorite cup of chai.</p>
+                            <p>We'll also introduce some modern twists and unexpected pairings that will surprise and
+                                delight your taste buds. Get ready to elevate your chai experience!</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md scroll-animation fade-in-up card-tilt blog-card hover-lift"
+                        data-title="New Store Opening in Vadodara!" data-image="images/blog 3.png"
+                        data-date="August 5, 2025" style="animation-delay: 0.2s;">
+                        <div class="overflow-hidden rounded-md mb-4 hover-zoom"><img src="images/blog 3.png"
+                                alt="Blog Post 3" class="w-full h-48 object-cover"></div>
+                        <span class="text-sm text-gray-500">August 5, 2025</span>
+                        <h3 class="font-bold text-xl my-2">New Store Opening in Vadodara!</h3>
+                        <p class="text-gray-600 mb-4">We are thrilled to announce our newest location in the heart of
+                            Vadodara. Come say hello and enjoy a cup on us!</p>
+                        <a href="#" class="text-brand-brown font-semibold read-more-btn">Read More &rarr;</a>
+                        <div class="blog-content-full hidden">
+                            <p>The Sharma Ji Ki Chai family is growing! We are thrilled to announce the grand opening of
+                                our newest location in the heart of Vadodara. Located in the vibrant Vasna neighborhood,
+                                our new cafe is ready to welcome you with the familiar warmth and authentic flavors you
+                                love.</p>
+                            <p>Come celebrate with us! Join us for our opening week festivities, enjoy a complimentary
+                                cup of our signature masala chai, and become a part of our new community. We can't wait
+                                to see you there!</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md scroll-animation fade-in-up card-tilt blog-card hover-lift"
+                        data-title="The Health Benefits of Ginger Chai" data-image="images/blog 4.png"
+                        data-date="July 28, 2025" style="animation-delay: 0.4s;">
+                        <div class="overflow-hidden rounded-md mb-4 hover-zoom"><img src="images/blog 4.png"
+                                alt="Blog Post 4" class="w-full h-48 object-cover"></div>
+                        <span class="text-sm text-gray-500">July 28, 2025</span>
+                        <h3 class="font-bold text-xl my-2">The Health Benefits of Ginger Chai</h3>
+                        <p class="text-gray-600 mb-4">More than just a delicious beverage, find out how your daily cup
+                            of ginger chai can boost your health and well-being.</p>
+                        <a href="#" class="text-brand-brown font-semibold read-more-btn">Read More &rarr;</a>
+                        <div class="blog-content-full hidden">
+                            <p>Ginger is a powerhouse of health benefits, and when it's combined with our delicious
+                                chai, it's a match made in heaven. Learn about the anti-inflammatory properties,
+                                digestive aids, and immune-boosting effects of this amazing root.</p>
+                            <p>We'll share why our freshly-grated ginger makes all the difference and how this simple,
+                                daily ritual can contribute to a healthier, happier you. It's wellness in a cup!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="locator" class="page">
+            <div class="bg-brand-green text-white py-20">
+                <div class="container mx-auto px-6 text-center scroll-animation fade-in">
+                    <h1 class="text-4xl font-bold">Find a Sharma Ji Ki Chai Near You</h1>
+                    <p class="text-xl mt-4 max-w-3xl mx-auto">Your next cup of perfect chai is just around the corner.
+                    </p>
+                </div>
+            </div>
+            <div class="container mx-auto px-6 py-16">
+                <div class="max-w-3xl mx-auto mb-12 scroll-animation fade-in-up">
+                    <div class="relative"><input type="search" placeholder="Enter your city or area..."
+                            class="w-full p-4 pl-12 border-2 border-brand-brown rounded-full focus:outline-none focus:ring-2 focus:ring-brand-green"><i
+                            class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-brand-brown text-xl"></i><button
+                            class="absolute right-2 top-1/2 -translate-y-1/2 bg-brand-brown text-white font-bold py-2 px-6 rounded-full hover:bg-opacity-90 transform hover:scale-105 transition btn-shine">Search</button>
+                    </div>
+                </div>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="scroll-animation fade-in-right hover-zoom rounded-lg overflow-hidden"><img
+                            src="https://images.unsplash.com/photo-1588853863347-1610a0184a54?q=80&w=1974&auto=format&fit=crop"
+                            alt="Map" class="w-full h-full object-cover rounded-lg shadow-md"></div>
+                    <div class="space-y-6 max-h-[600px] overflow-y-auto pr-4">
+                        <div class="bg-white p-6 rounded-lg shadow-md scroll-animation fade-in-up card-tilt hover-lift">
+                            <h3 class="font-bold text-xl text-brand-brown">Koramangala, Bengaluru</h3>
+                            <p class="text-gray-600 mt-1">#123, 4th Block, 80ft Road, Koramangala</p>
+                            <p class="text-gray-600">Phone: +91 98765 43210</p>
+                            <p class="text-gray-600">Hours: 9:00 AM - 11:00 PM</p><a href="#"
+                                class="text-brand-green font-semibold mt-2 inline-block">Get Directions &rarr;</a>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-md scroll-animation fade-in-up card-tilt hover-lift"
+                            style="animation-delay: 0.2s;">
+                            <h3 class="font-bold text-xl text-brand-brown">Bandra West, Mumbai</h3>
+                            <p class="text-gray-600 mt-1">Shop 5, Linking Road, Bandra West</p>
+                            <p class="text-gray-600">Phone: +91 98765 11223</p>
+                            <p class="text-gray-600">Hours: 8:00 AM - 12:00 AM</p><a href="#"
+                                class="text-brand-green font-semibold mt-2 inline-block">Get Directions &rarr;</a>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-md scroll-animation fade-in-up card-tilt hover-lift"
+                            style="animation-delay: 0.4s;">
+                            <h3 class="font-bold text-xl text-brand-brown">Connaught Place, Delhi</h3>
+                            <p class="text-gray-600 mt-1">F-Block, Inner Circle, Connaught Place</p>
+                            <p class="text-gray-600">Phone: +91 98765 44556</p>
+                            <p class="text-gray-600">Hours: 10:00 AM - 10:00 PM</p><a href="#"
+                                class="text-brand-green font-semibold mt-2 inline-block">Get Directions &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="page">
+            <div class="page-hero contact-hero py-20">
+                <div class="container mx-auto px-6 text-center scroll-animation fade-in text-white">
+                    <h1 class="text-4xl font-bold">Get In Touch</h1>
+                    <p class="text-xl mt-4 max-w-3xl mx-auto">We'd love to hear from you. For queries, feedback, or just
+                        to say hi!</p>
+                </div>
+            </div>
+            <div class="container mx-auto px-6 py-16">
+                <div class="grid md:grid-cols-2 gap-12">
+                    <div class="bg-white p-8 rounded-lg shadow-lg scroll-animation fade-in-right">
+                        <h2 class="text-2xl font-bold text-brand-brown mb-6">Send us a Message</h2>
+                        <form id="contactForm">
+                            <div class="mb-4"><label for="name" class="block mb-2 font-semibold">Name</label><input
+                                    type="text" id="name" name="name" required
+                                    class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-brown transition hover-lift">
+                            </div>
+                            <div class="mb-4"><label for="email" class="block mb-2 font-semibold">Email</label><input
+                                    type="email" id="email" name="email" required
+                                    class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-brown transition hover-lift">
+                            </div>
+                            <div class="mb-4"><label for="subject"
+                                    class="block mb-2 font-semibold">Subject</label><input type="text" id="subject" name="subject" required
+                                    class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-brown transition hover-lift">
+                            </div>
+                            <div class="mb-4"><label for="message"
+                                    class="block mb-2 font-semibold">Message</label><textarea id="message" name="message" rows="5" required
+                                    class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-brown transition hover-lift"></textarea>
+                            </div>
+                            <button type="submit"
+                                class="w-full bg-brand-green text-white font-bold py-3 px-6 rounded-md hover:bg-green-800 transition duration-300 transform hover:-translate-y-1 btn-shine">Send
+                                Message</button>
+                        </form>
+                    </div>
+                    <div class="scroll-animation fade-in-left">
+                        <div class="bg-white p-8 rounded-lg shadow-lg mb-8 hover-lift">
+                            <h3 class="text-2xl font-bold text-brand-brown mb-4">Contact Information</h3>
+                            <p class="flex items-start text-lg mb-3"><i
+                                    class="fas fa-map-marker-alt text-brand-brown w-6 mr-3 mt-1"></i><span><strong>Sharma
+                                        Ji Ki Chai</strong><br>GF 7, Vihav Trade Centre, near Waves Club, Bhayli,
+                                    Vadodara, Gujarat 391410</span></p>
+                            <p class="flex items-center text-lg mb-3"><i
+                                    class="fas fa-envelope text-brand-brown w-6 mr-3"></i>sharmajikichaivadodara@gmail.com
+                            </p>
+                            <p class="flex items-center text-lg mb-3"><i
+                                    class="fas fa-phone text-brand-brown w-6 mr-3"></i>9558241510 | 8069578082</p>
+                            <p class="flex items-center text-lg"><i
+                                    class="fas fa-clock text-brand-brown w-6 mr-3"></i><strong>Hours: </strong> 8:30 AM -
+                                1:30 AM, Daily</p>
+                        </div>
+                        <div class="rounded-lg shadow-lg overflow-hidden hover-lift">
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3691.8191968178244!2d73.1299613747489!3d22.284837743456794!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395fc798b7dbda99%3A0x23f0dcd6becb1f9b!2sSharmaji%20Ki%20Chai!5e0!3m2!1sen!2sin!4v1755793704173!5m2!1sen!2sin"
+                                class="w-full h-80" style="border:0;" allowfullscreen="" loading="lazy"
+                                referrerpolicy="no-referrer-downgrade"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- NEW Footer -->
+    <footer class="bg-brand-brown text-white">
+        <div class="container mx-auto px-6 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Column 1: Brand Info -->
+                <div>
+                    <h3 class="font-bold text-xl mb-4">Sharma Ji Ki Chai</h3>
+                    <p class="mb-4">Brewing Conversations, One Cup at a Time.</p>
+                    <div class="flex space-x-4 mt-4">
+                        <a href="https://www.facebook.com/share/15vTCYB7tp/"
+                            class="social-icon text-2xl"><i class="fab fa-facebook-f"></i></a>
+                        <!-- <a href="#" class="social-icon text-2xl"><i class="fab fa-twitter"></i></a> -->
+                        <a href="https://www.instagram.com/sharmajikichai.in?igsh=eHk4cGR5eWFpenY2"
+                            class="social-icon text-2xl"><i class="fab fa-instagram"></i></a>
+                        <!-- <a href="#" class="social-icon text-2xl"><i class="fab fa-youtube"></i></a> -->
+                    </div>
+                </div>
+                <!-- Column 2: Quick Links -->
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:underline nav-link" data-page="home">Home</a></li>
+                        <li><a href="#" class="hover:underline nav-link" data-page="about">About Us</a></li>
+                        <li><a href="#" class="hover:underline nav-link" data-page="franchise">Franchise</a></li>
+                        <li><a href="#" class="hover:underline nav-link" data-page="cafes">Menu</a></li>
+                        <li><a href="#" class="hover:underline nav-link" data-page="blogs">Blog</a></li>
+                        <li><a href="#" class="hover:underline nav-link" data-page="contact">Contact Us</a></li>
+                    </ul>
+                </div>
+                <!-- Column 3: Company Links -->
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Company</h3>
+                    <ul class="space-y-2">
+                        <!-- <li><a href="#" class="hover:underline">Careers</a></li>
+                        <li><a href="#" class="hover:underline">Investor Relations</a></li> -->
+                        <li><a href="javascript:void(0)" id="privacy-link" class="hover:underline">Privacy Policy</a>
+                        </li>
+                        <li><a href="javascript:void(0)" id="terms-link" class="hover:underline">Terms & Conditions</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Copyright Section -->
+            <div class="mt-10 pt-8 border-t border-gray-500 text-center text-sm">
+                <p>&copy; 2025 Sharma Ji Ki Chai All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Blog Post Modal -->
+    <div id="blog-modal" class="modal-overlay">
+        <div class="modal-content">
+            <i class="fas fa-times modal-close"></i>
+            <img id="modal-img" src="" alt="Blog Image" class="w-full h-64 object-cover rounded-lg mb-4">
+            <h2 id="modal-title" class="text-3xl font-bold text-brand-brown mb-2"></h2>
+            <span id="modal-date" class="text-sm text-gray-500 mb-4 block"></span>
+            <div id="modal-body" class="text-lg text-gray-700 space-y-4">
+            </div>
+        </div>
+    </div>
+
+    <!-- Policy Modal -->
+    <div id="policy-modal" class="modal-overlay">
+        <div class="modal-content">
+            <i class="fas fa-times modal-close"></i>
+            <h2 id="policy-modal-title" class="text-3xl font-bold text-brand-brown mb-4"></h2>
+            <div id="policy-modal-body" class="text-base text-gray-700 space-y-4">
+                <!-- Content will be injected by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const pages = document.querySelectorAll('.page');
+            const blogModal = document.getElementById('blog-modal');
+            const blogModalClose = blogModal.querySelector('.modal-close');
+            const policyModal = document.getElementById('policy-modal');
+            const policyModalClose = policyModal.querySelector('.modal-close');
+            const privacyLink = document.getElementById('privacy-link');
+            const termsLink = document.getElementById('terms-link');
+            
+            // --- NEW: Mobile Menu Logic ---
+            const hamburgerBtn = document.getElementById('hamburger-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            if (hamburgerBtn && mobileMenu) {
+                hamburgerBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            function showPage(pageId) {
+                pages.forEach(page => page.classList.remove('active'));
+                const targetPage = document.getElementById(pageId);
+                if (targetPage) {
+                    targetPage.classList.add('active');
+                    triggerPageAnimations(targetPage);
+                }
+                document.querySelectorAll('.nav-tab').forEach(link => {
+                    link.classList.remove('active');
+                    if (link.dataset.page === pageId) {
+                        const parentTab = link.closest('.nav-tab');
+                        if (parentTab) parentTab.classList.add('active');
+                    }
+                });
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                mobileMenu.classList.add('hidden'); // Close mobile menu on page change
+            }
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const pageId = link.dataset.page;
+                    if (pageId) showPage(pageId);
+                });
+            });
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            function triggerPageAnimations(pageElement) {
+                const animatedElements = pageElement.querySelectorAll('.scroll-animation, .decorative-leaf');
+                animatedElements.forEach(el => {
+                    // We don't remove 'visible' anymore to prevent re-animation on tab switch
+                    observer.observe(el);
+                });
+            }
+
+            // Initial animations for the default active page
+            triggerPageAnimations(document.querySelector('.page.active'));
+
+
+            // --- Blog Modal Logic ---
+            function openBlogModal(data) {
+                document.getElementById('modal-img').src = data.image;
+                document.getElementById('modal-title').textContent = data.title;
+                document.getElementById('modal-date').textContent = data.date;
+                document.getElementById('modal-body').innerHTML = data.content;
+                blogModal.classList.add('active');
+                document.body.classList.add('modal-open');
+            }
+
+            function closeBlogModal() {
+                blogModal.classList.remove('active');
+                document.body.classList.remove('modal-open');
+            }
+
+            document.querySelectorAll('.read-more-btn').forEach(button => {
+                button.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const card = this.closest('.blog-card');
+                    const blogData = {
+                        image: card.dataset.image,
+                        title: card.dataset.title,
+                        date: card.dataset.date,
+                        content: card.querySelector('.blog-content-full').innerHTML
+                    };
+                    openBlogModal(blogData);
+                });
+            });
+
+            blogModalClose.addEventListener('click', closeBlogModal);
+            blogModal.addEventListener('click', function (e) {
+                if (e.target === this) {
+                    closeBlogModal();
+                }
+            });
+
+            // --- Policy Modal Logic ---
+            const policyContent = {
+                privacy: {
+                    title: 'Privacy Policy',
+                    body: `
+                        <p><strong>Last Updated: 22 August 2025</strong></p>
+                        <p>Sharma Ji Ki Chai Pvt. Ltd. ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website.</p>
+                        <h3 class="font-bold text-lg mt-4">1. Information We Collect</h3>
+                        <p>We may collect personal information from you such as your name, email address, and phone number when you fill out a contact or franchise inquiry form. We also collect non-personal information, such as browser type and pages visited, to improve our website.</p>
+                        <h3 class="font-bold text-lg mt-4">2. Use of Your Information</h3>
+                        <p>We may use the information we collect to: respond to your inquiries, send you marketing communications, improve our website and services, and process your franchise application.</p>
+                        <h3 class="font-bold text-lg mt-4">3. Disclosure of Your Information</h3>
+                        <p>We do not sell, trade, or otherwise transfer to outside parties your personally identifiable information unless we provide users with advance notice. This does not include website hosting partners and other parties who assist us in operating our website, so long as those parties agree to keep this information confidential.</p>
+                    `
+                },
+                terms: {
+                    title: 'Terms & Conditions',
+                    body: `
+                        <p><strong>Last Updated: 22 August 2025</strong></p>
+                        <p>Please read these Terms and Conditions ("Terms") carefully before using the Sharma Ji Ki Chai website.</p>
+                        <h3 class="font-bold text-lg mt-4">1. Agreement to Terms</h3>
+                        <p>By accessing or using our website, you agree to be bound by these Terms. If you disagree with any part of the terms, then you may not access the website.</p>
+                        <h3 class="font-bold text-lg mt-4">2. Intellectual Property</h3>
+                        <p>The content, logo, and other visual media created by Sharma Ji Ki Chai is our property and is protected by copyright laws. You are not permitted to use any of our intellectual property without our prior written consent.</p>
+                        <h3 class="font-bold text-lg mt-4">3. Limitation of Liability</h3>
+                        <p>In no event shall Sharma Ji Ki Chai, nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, incidental, special, consequential or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from your access to or use of or inability to access or use the website.</p>
+                    `
+                }
+            };
+
+            function openPolicyModal(type) {
+                const content = policyContent[type];
+                document.getElementById('policy-modal-title').textContent = content.title;
+                document.getElementById('policy-modal-body').innerHTML = content.body;
+                policyModal.classList.add('active');
+                document.body.classList.add('modal-open');
+            }
+
+            function closePolicyModal() {
+                policyModal.classList.remove('active');
+                document.body.classList.remove('modal-open');
+            }
+
+            privacyLink.addEventListener('click', () => openPolicyModal('privacy'));
+            termsLink.addEventListener('click', () => openPolicyModal('terms'));
+            policyModalClose.addEventListener('click', closePolicyModal);
+            policyModal.addEventListener('click', function (e) {
+                if (e.target === this) {
+                    closePolicyModal();
+                }
+            });
+
+
+            // --- Page-Turn Gallery Logic ---
+            const gallery = document.getElementById('scrolling-gallery');
+            if (gallery) {
+                const galleryItems = Array.from(gallery.querySelectorAll('.gallery-item'));
+                const prevButton = document.getElementById('gallery-prev');
+                const nextButton = document.getElementById('gallery-next');
+                let currentIndex = 0;
+                const totalItems = galleryItems.length;
+
+                function updateGallery() {
+                    galleryItems.forEach((item, index) => {
+                        if (index < currentIndex) {
+                            item.classList.add('flipped');
+                            item.style.zIndex = index;
+                        } else {
+                            item.classList.remove('flipped');
+                            item.style.zIndex = totalItems - index;
+                        }
+                    });
+                    prevButton.disabled = currentIndex === 0;
+                    nextButton.disabled = currentIndex >= totalItems - 1;
+                    prevButton.style.opacity = prevButton.disabled ? '0.5' : '1';
+                    nextButton.style.opacity = nextButton.disabled ? '0.5' : '1';
+                }
+
+                nextButton.addEventListener('click', () => {
+                    if (currentIndex < totalItems - 1) {
+                        currentIndex++;
+                        updateGallery();
+                    }
+                });
+
+                prevButton.addEventListener('click', () => {
+                    if (currentIndex > 0) {
+                        currentIndex--;
+                        updateGallery();
+                    }
+                });
+                updateGallery();
+            }
+
+            // --- 3D Tilt Effect Logic ---
+            document.querySelectorAll('.card-tilt').forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const { width, height } = rect;
+                    const rotateX = (y / height - 0.5) * -15;
+                    const rotateY = (x / width - 0.5) * 15;
+
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+                });
+            });
+
+            // --- Snack Animation Logic ---
+            const snackImages = document.querySelectorAll('.snack-image');
+            const basketTarget = document.getElementById('cycle-man-container');
+
+            if (snackImages.length > 0 && basketTarget) {
+                snackImages.forEach(image => {
+                    image.addEventListener('click', () => {
+                        // Prevent animation on small screens where layout is different
+                        if (window.innerWidth < 768) return;
+
+                        const startRect = image.getBoundingClientRect();
+                        const basketRect = basketTarget.getBoundingClientRect();
+                        const clone = image.cloneNode(true);
+                        clone.classList.remove('snack-image', 'absolute');
+                        clone.classList.add('flying-snack');
+                        document.body.appendChild(clone);
+                        clone.style.left = `${startRect.left}px`;
+                        clone.style.top = `${startRect.top}px`;
+                        clone.style.width = `${startRect.width}px`;
+                        clone.style.height = `${startRect.height}px`;
+                        clone.style.opacity = '1';
+                        clone.style.transform = 'translate(0, 0) scale(1) rotate(0deg)';
+                        clone.style.transition = 'none';
+                        const endX = basketRect.left + (basketRect.width * 0.3) - (startRect.width / 2);
+                        const endY = basketRect.top + (basketRect.height * 0.2) - (startRect.height / 2);
+                        const translateX = endX - startRect.left;
+                        const translateY = endY - startRect.top;
+
+                        setTimeout(() => {
+                            clone.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1.5)';
+                            clone.style.transform = `translate(20px, -100px) scale(1.2) rotate(-5deg)`;
+                            setTimeout(() => {
+                                clone.style.transition = 'transform 1s cubic-bezier(0.55, 0.06, 0.68, 0.19), opacity 0.8s ease-in-out';
+                                clone.style.transform = `translate(${translateX}px, ${translateY}px) scale(0.1) rotate(360deg)`;
+                                clone.style.opacity = '0';
+                            }, 400);
+                        }, 20);
+
+                        clone.addEventListener('transitionend', () => {
+                            if (clone.style.opacity === '0') {
+                                clone.remove();
+                            }
+                        });
+                    });
+                });
+            }
+
+            // --- Google Sheet Form Submission ---
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbzjQjcxZTIa5BRaqZaFWUSRg8VNb8eSYJdW3XMRQ7cZ_BlJrSz6Zf62E6fv-EgqIkhEsw/exec'; // IMPORTANT: Replace with your script URL
+            const franchiseForm = document.getElementById('franchiseForm');
+            const contactForm = document.getElementById('contactForm');
+
+            if(franchiseForm) {
+                franchiseForm.addEventListener('submit', e => {
+                    e.preventDefault();
+                    const submitButton = franchiseForm.querySelector('button[type="submit"]');
+                    submitButton.disabled = true;
+                    submitButton.textContent = 'Submitting...';
+                    fetch(scriptURL, { method: 'POST', body: new FormData(franchiseForm)})
+                        .then(response => {
+                            submitButton.disabled = false;
+                            submitButton.textContent = 'Request Information';
+                            alert('Thank you! Your request has been sent successfully.');
+                            franchiseForm.reset();
+                        })
+                        .catch(error => {
+                            submitButton.disabled = false;
+                            submitButton.textContent = 'Request Information';
+                            alert('Error! Something went wrong. Please try again.');
+                            console.error('Error!', error.message);
+                        });
+                });
+            }
+            
+            if(contactForm) {
+                contactForm.addEventListener('submit', e => {
+                    e.preventDefault();
+                    const submitButton = contactForm.querySelector('button[type="submit"]');
+                    submitButton.disabled = true;
+                    submitButton.textContent = 'Sending...';
+                    fetch(scriptURL, { method: 'POST', body: new FormData(contactForm)})
+                        .then(response => {
+                            submitButton.disabled = false;
+                            submitButton.textContent = 'Send Message';
+                            alert('Thank you! Your message has been sent successfully.');
+                            contactForm.reset();
+                        })
+                        .catch(error => {
+                            submitButton.disabled = false;
+                            submitButton.textContent = 'Send Message';
+                            alert('Error! Something went wrong. Please try again.');
+                            console.error('Error!', error.message);
+                        });
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
